@@ -55,8 +55,8 @@
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
 	    
 	    <div class="form-group">
-            <label for="varchar">NIM <?php echo form_error('nim') ?></label>
-            <input type="text" class="form-control" name="nim" id="nim" placeholder="NIM Anda" autocomplete="on" value="<?php echo $nim; ?>" />
+            <label for="varchar">Mahasiswa <?php echo form_error('nim') ?></label>
+            <input type="text" class="form-control" name="nim" id="nim" placeholder="NIM Anda" autocomplete="on" value="<?php echo $nim.' - '.$nm_mhs; ?>" />
         </div>
 	    <div class="form-group">
             <label for="varchar">Tanggal Bimbingan <?php echo form_error('tgl') ?></label>
