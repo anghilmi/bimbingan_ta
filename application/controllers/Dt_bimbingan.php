@@ -171,6 +171,8 @@ class Dt_bimbingan extends CI_Controller
     public function update($id) 
     {
         $this->load->model('dt_dosen_model');
+        $this->load->model('dt_mahasiswa_model');
+
         $this->load->helper('form_helper');
 
         $id_asli = $id-45;
@@ -190,8 +192,9 @@ class Dt_bimbingan extends CI_Controller
         'dd_dosen' => $this->dt_dosen_model->dd_dosen(),
         'dosen_selected' => $this->input->post('nidn') ? $this->input->post('nidn') : '',
 
-		//'qrcode' => set_value('qrcode', $row->qrcode),
+		'nm_mhs' => $this->dt_mahasiswa_model->get_nama_by_nim($row->nim),
 		'validasi' => set_value('validasi', $row->validasi),
+
 	    );
             $this->load->view('dt_bimbingan/dt_bimbingan_form_dosen', $data);
         } else {
@@ -222,7 +225,7 @@ class Dt_bimbingan extends CI_Controller
 
             $data = array(
 		//'thn_akademik' => $this->input->post('thn_akademik',TRUE),
-		'nim' => $this->input->post('nim',TRUE),
+		'nim' => substr($this->input->post('nim',TRUE),0,7),
 		'tgl' => $this->input->post('tgl',TRUE),
 		'nidn' => $this->input->post('nidn',TRUE),
 		'catatan' => $this->input->post('catatan',TRUE),
