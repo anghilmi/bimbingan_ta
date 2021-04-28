@@ -177,7 +177,13 @@ class Dt_bimbingan extends CI_Controller
 
         $id_asli = $id-45;
         $row = $this->Dt_bimbingan_model->get_by_id($id_asli); //decode akal-akalan
+        if (!empty($this->dt_mahasiswa_model->get_nama_by_nim($row->nim))) {
+            # code...
+            $nm_mahasiswa = $this->dt_mahasiswa_model->get_nama_by_nim($row->nim);
+        }else{
+            $nm_mahasiswa = "NIM salah, nama tidak ditemukan";
 
+        }
         if ($row) {
             $data = array(
                 'button' => 'Ubah',
@@ -192,7 +198,7 @@ class Dt_bimbingan extends CI_Controller
         'dd_dosen' => $this->dt_dosen_model->dd_dosen(),
         'dosen_selected' => $this->input->post('nidn') ? $this->input->post('nidn') : '',
 
-		'nm_mhs' => $this->dt_mahasiswa_model->get_nama_by_nim($row->nim),
+		'nm_mhs' => $nm_mahasiswa,
 		'validasi' => set_value('validasi', $row->validasi),
 
 	    );
