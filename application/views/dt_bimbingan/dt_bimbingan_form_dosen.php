@@ -81,7 +81,9 @@
   <input type="range" min="1" max="100" value="50" class="slider" id="myRange" name="persen_progres">
   
 </div>
-
+<div class="form-group">
+            <label for="varchar">PIN Dosen </label>
+            <input type="text" class="form-control" name="pin" id="pin" placeholder="PIN Dosbing" autocomplete="off" />
 <script>
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");

@@ -28,6 +28,13 @@ class Dt_dosen_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    // get data pin by nidn
+    function get_pin($nidn)
+    {
+        $this->db->where('nidn', $nidn);
+        return $this->db->get($this->table)->row();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

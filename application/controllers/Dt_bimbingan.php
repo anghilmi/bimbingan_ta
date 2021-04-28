@@ -197,18 +197,29 @@ class Dt_bimbingan extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data tidak ditemukan');
             //redirect(site_url('dt_bimbingan'));
-            echo "Data invalid";
+            echo "PIN invalid";
         }
     }
     
     public function update_action() 
     {
+        //ambil data dari tabel dosen, cocokkan dengan nidn yang diinput
+        $this->load->model('Dt_dosen_model');
+        $row = $this->Dt_dosen_model->get_pin($this->input->post('nidn',TRUE)); 
+        $pin_dosen = $row->pin;
+
+        if ($pin_dosen != $this->input->post('pin')) {
+            
+            $this->session->set_flashdata('message', 'PIN invalid');
+            $this->update($this->input->post('id_record', TRUE));
+        }else{
+
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id_record', TRUE));
         } else {
-            
+
             $data = array(
 		//'thn_akademik' => $this->input->post('thn_akademik',TRUE),
 		'nim' => $this->input->post('nim',TRUE),
@@ -221,9 +232,10 @@ class Dt_bimbingan extends CI_Controller
 
             $this->Dt_bimbingan_model->update($this->input->post('id_record', TRUE), $data);
             $this->session->set_flashdata('message', 'Ubah Data Berhasil');
-            echo "OK"; //[TODO]
+            echo "Validasi OK"; //[TODO]
             //redirect(site_url('dt_bimbingan'));
         }
+    }
     }
     
     public function delete($id) 

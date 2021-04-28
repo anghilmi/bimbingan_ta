@@ -77,7 +77,7 @@
 <br>
 <div class="col-md-3">
 
-<button class="btn btn-primary" onclick="myFunction()" onmouseout="outFunc()">
+<button class="btn btn-success" onclick="myFunction()" onmouseout="outFunc()">
   <span class="tooltiptext" id="myTooltip"></span>
   Copy URL
   </button>
