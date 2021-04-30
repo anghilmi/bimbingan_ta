@@ -53,7 +53,7 @@
         <h4 style="margin-top:0px">Validasi Data Bimbingan</h4>
         <hr>
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
-	    
+        
 	    <div class="form-group">
             <label for="varchar">Mahasiswa <?php echo form_error('nim') ?></label>
             <input type="text" class="form-control" name="nim" id="nim" placeholder="NIM Anda" autocomplete="on" value="<?php echo $nim.' - '.$nm_mhs; ?>" />
@@ -82,7 +82,7 @@
   
 </div>
 <div class="form-group">
-            <label for="varchar">PIN Dosen </label>
+            <label for="varchar">PIN Dosen <?php //echo $this->session->userdata('message'); ?></label>
             <input type="text" class="form-control" name="pin" id="pin" placeholder="PIN Dosbing" autocomplete="off" />
 <script>
 var slider = document.getElementById("myRange");
