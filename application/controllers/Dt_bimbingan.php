@@ -177,9 +177,10 @@ class Dt_bimbingan extends CI_Controller
 
         $id_asli = $id-45;
         $row = $this->Dt_bimbingan_model->get_by_id($id_asli); //decode akal-akalan
-        if (!empty($this->dt_mahasiswa_model->get_nama_by_nim($row->nim))) {
+        $getNim = $this->Dt_bimbingan_model->get_nim_by_id($id_asli);
+        if (!empty($this->dt_mahasiswa_model->get_nama_by_nim($getNim))) {
             # code...
-            $nm_mahasiswa = $this->dt_mahasiswa_model->get_nama_by_nim($row->nim);
+            $nm_mahasiswa = $this->dt_mahasiswa_model->get_nama_by_nim($getNim);
         }else{
             $nm_mahasiswa = "NIM salah, nama tidak ditemukan";
 
@@ -204,9 +205,13 @@ class Dt_bimbingan extends CI_Controller
 	    );
             $this->load->view('dt_bimbingan/dt_bimbingan_form_dosen', $data);
         } else {
-            $this->session->set_flashdata('message', 'Data tidak ditemukan');
+            $this->session->set_flashdata('message', 'PIN invalid');
+            $this->session->set_flashdata('linkback', "<a href='javascript:history.back()'><< Kembali</a>");
             //redirect(site_url('dt_bimbingan'));
-            echo "PIN invalid";
+            $this->load->view('dt_bimbingan/dt_bimbingan_validasi');
+            //echo "PIN invalid <br>";//[todo]
+            //echo"<a href='javascript:history.back()'>Go Back</a>";
+
         }
     }
     
@@ -240,8 +245,10 @@ class Dt_bimbingan extends CI_Controller
 	    );
 
             $this->Dt_bimbingan_model->update($this->input->post('id_record', TRUE), $data);
-            $this->session->set_flashdata('message', 'Ubah Data Berhasil');
-            echo "Validasi OK"; //[TODO]
+            $this->session->set_flashdata('message', 'Validasi OK');
+            //echo "Validasi OK"; //[TODO]
+            $this->load->view('dt_bimbingan/dt_bimbingan_validasi');
+
             //redirect(site_url('dt_bimbingan'));
         }
     }
@@ -264,7 +271,7 @@ class Dt_bimbingan extends CI_Controller
     public function _rules() 
     {
 	// $this->form_validation->set_rules('thn_akademik', 'thn akademik', 'trim|required');
-	$this->form_validation->set_rules('nim', 'nim', 'trim|required');
+	$this->form_validation->set_rules('nim', 'nim', 'is_natural|trim|required');
 	$this->form_validation->set_rules('tgl', 'tgl', 'trim|required');
 	$this->form_validation->set_rules('nidn', 'nidn', 'trim|required');
 	$this->form_validation->set_rules('catatan', 'catatan', 'trim|required');
