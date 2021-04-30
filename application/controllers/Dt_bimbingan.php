@@ -205,7 +205,7 @@ class Dt_bimbingan extends CI_Controller
 	    );
             $this->load->view('dt_bimbingan/dt_bimbingan_form_dosen', $data);
         } else {
-            $this->session->set_flashdata('message', 'Nim salah &/ PIN dosen invalid');
+            $this->session->set_flashdata('message', 'PIN invalid');
             $this->session->set_flashdata('linkback', "<a href='javascript:history.back()'><< Kembali</a>");
             //redirect(site_url('dt_bimbingan'));
             $this->load->view('dt_bimbingan/dt_bimbingan_validasi');
@@ -228,7 +228,7 @@ class Dt_bimbingan extends CI_Controller
             $this->update($this->input->post('id_record', TRUE));
         }else{
 
-        $this->_rules();
+        $this->_rules_update();
 
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id_record', TRUE));
@@ -271,7 +271,20 @@ class Dt_bimbingan extends CI_Controller
     public function _rules() 
     {
 	// $this->form_validation->set_rules('thn_akademik', 'thn akademik', 'trim|required');
-	$this->form_validation->set_rules('nim', 'nim', 'is_natural|trim|required');
+	$this->form_validation->set_rules('nim', 'nim', 'exact_length[7]|is_natural|trim|required');
+	$this->form_validation->set_rules('tgl', 'tgl', 'trim|required');
+	$this->form_validation->set_rules('nidn', 'nidn', 'trim|required');
+	$this->form_validation->set_rules('catatan', 'catatan', 'trim|required');
+	// $this->form_validation->set_rules('qrcode', 'qrcode', 'trim');
+	// $this->form_validation->set_rules('validasi', 'validasi', 'trim');
+
+	//$this->form_validation->set_rules('id_record', 'id_record', 'trim|required');
+	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+    public function _rules_update() 
+    {
+	// $this->form_validation->set_rules('thn_akademik', 'thn akademik', 'trim|required');
+	$this->form_validation->set_rules('nim', 'nim', 'min_length[7]|trim|required');
 	$this->form_validation->set_rules('tgl', 'tgl', 'trim|required');
 	$this->form_validation->set_rules('nidn', 'nidn', 'trim|required');
 	$this->form_validation->set_rules('catatan', 'catatan', 'trim|required');
