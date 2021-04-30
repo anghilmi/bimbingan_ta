@@ -205,7 +205,7 @@ class Dt_bimbingan extends CI_Controller
 	    );
             $this->load->view('dt_bimbingan/dt_bimbingan_form_dosen', $data);
         } else {
-            $this->session->set_flashdata('message', 'PIN invalid');
+            $this->session->set_flashdata('message', 'Nim salah &/ PIN dosen invalid');
             $this->session->set_flashdata('linkback', "<a href='javascript:history.back()'><< Kembali</a>");
             //redirect(site_url('dt_bimbingan'));
             $this->load->view('dt_bimbingan/dt_bimbingan_validasi');
