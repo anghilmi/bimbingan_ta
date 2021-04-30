@@ -10,7 +10,7 @@ class Dt_dosen extends CI_Controller
         parent::__construct();
         $this->load->model('Dt_dosen_model');
         $this->load->library('form_validation');
-        //$this->check();
+        $this->check();
     }
 
     
@@ -22,7 +22,7 @@ class Dt_dosen extends CI_Controller
             redirect('auth');
         }
     }
-    public function index()
+    public function indexz()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
