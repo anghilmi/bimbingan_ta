@@ -28,6 +28,12 @@ class Dt_bimbingan_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+    // get nim by id
+    function get_nim_by_id($id)
+    {
+        $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row('nim');
+    }
     
     // get total rows
     function total_rows($q = NULL) {
