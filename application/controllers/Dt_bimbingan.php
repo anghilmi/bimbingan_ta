@@ -22,7 +22,7 @@ class Dt_bimbingan extends CI_Controller
             redirect('auth');
         }
     }
-    public function index()
+    public function indexz234535346()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
@@ -53,7 +53,7 @@ class Dt_bimbingan extends CI_Controller
         $this->load->view('dt_bimbingan/dt_bimbingan_list', $data);
     }
 
-    public function read($id) 
+    public function read3423532463465($id) 
     {
         $row = $this->Dt_bimbingan_model->get_by_id($id);
         if ($row) {
@@ -254,7 +254,7 @@ class Dt_bimbingan extends CI_Controller
     }
     }
     
-    public function delete($id) 
+    public function delete3453453452342342($id) 
     {
         $row = $this->Dt_bimbingan_model->get_by_id($id);
 
@@ -309,6 +309,7 @@ class Dt_bimbingan extends CI_Controller
 	xlsWriteLabel($tablehead, $kolomhead++, "Tgl");
 	xlsWriteLabel($tablehead, $kolomhead++, "Nidn");
 	xlsWriteLabel($tablehead, $kolomhead++, "Catatan");
+    xlsWriteLabel($tablehead, $kolomhead++, "Progres");
 	xlsWriteLabel($tablehead, $kolomhead++, "Qrcode");
 	xlsWriteLabel($tablehead, $kolomhead++, "Validasi");
 
@@ -322,6 +323,7 @@ class Dt_bimbingan extends CI_Controller
 	    xlsWriteLabel($tablebody, $kolombody++, $data->tgl);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->nidn);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->catatan);
+        xlsWriteLabel($tablebody, $kolombody++, $data->persen_progres);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->qrcode);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->validasi);
 
